@@ -20,11 +20,11 @@ import java.util.Properties;
 public class Config {
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
-            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/my_db?useSSL=false&amp;serverTimezone=UTC");
+            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/my_db?useSSL=false&amp&serverTimezone=UTC");
             dataSource.setUser("ltrnt");
             dataSource.setPassword("ltrnt");
         } catch (PropertyVetoException e) {
@@ -35,7 +35,7 @@ public class Config {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(){
+    public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("ru.ltrnt.spring.rest.entity");
@@ -50,7 +50,7 @@ public class Config {
     }
 
     @Bean
-    public HibernateTransactionManager transactionManager(){
+    public HibernateTransactionManager transactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());
 
