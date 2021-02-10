@@ -43,4 +43,15 @@ public class RESTController {
         return employee;
     }
 
+    @DeleteMapping("/employees/{id}")
+    public String deleteEmployeeById(@PathVariable int id) {
+
+        if(employeeService.getEmployee(id) == null) {
+            throw new NoSuchEmployeeException("No employee with ID = " + id + " in database");
+        }
+
+        employeeService.deleteEmployee(id);
+        return "Employee with ID = " + id + " was deleted";
+    }
+
 }
