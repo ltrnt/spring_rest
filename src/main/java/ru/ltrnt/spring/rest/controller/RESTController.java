@@ -1,10 +1,7 @@
 package ru.ltrnt.spring.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.ltrnt.spring.rest.entity.Employee;
 import ru.ltrnt.spring.rest.exception_handling.NoSuchEmployeeException;
 import ru.ltrnt.spring.rest.service.EmployeeService;
@@ -31,6 +28,18 @@ public class RESTController {
             throw new NoSuchEmployeeException("No employee with ID = " + id + " in database");
         }
 
+        return employee;
+    }
+
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee employee) {
+        employeeService.saveEmployee(employee);
+        return employee;
+    }
+
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee employee) {
+        employeeService.saveEmployee(employee);
         return employee;
     }
 
